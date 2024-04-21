@@ -1,8 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import 'codemirror/lib/codemirror.css';
-@import 'codemirror/theme/material.css';
+@import "codemirror/lib/codemirror.css";
+@import "codemirror/theme/material.css";
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -26,4 +26,18 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+
+  .CodeMirror {
+    padding-top: 48px !important;
+    padding-left: 12px;
+    height: auto;
+    width: auto;
+
+
+  }
+
+  .CodeMirror .CodeMirror-scroll{
+    overflow: hidden
+}
+
 }
