@@ -36,6 +36,10 @@ export default function CodeEditor() {
                 theme: "material",
                 viewportMargin: Infinity,
 
+                lineWrapping : true
+              
+                
+
                 // lineNumbers: true,
               }}
               className="z-50  text-sm pl-3 overflow-hidden "

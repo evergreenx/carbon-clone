@@ -32,12 +32,9 @@ body {
     padding-left: 12px;
     height: auto;
     width: auto;
-
-
   }
 
-  .CodeMirror .CodeMirror-scroll{
-    overflow: hidden
-}
-
+  .CodeMirror .CodeMirror-scroll {
+    overflow: hidden;
+  }
 }
