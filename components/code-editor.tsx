@@ -7,6 +7,8 @@ import { javascript } from "@codemirror/lang-javascript";
 import { abcdef } from "@uiw/codemirror-themes-all";
 
 import { useQueryState } from "nuqs";
+import { themes } from "@/data";
+import { useSelect } from "downshift";
 
 export default function CodeEditor() {
   const value = `const pluckDeep = key => obj => key.split('.').reduce((accum, key) => accum[key], obj)
@@ -115,9 +117,9 @@ export default function CodeEditor() {
     }
   }, [editor.current]);
 
-  console.log(bg);
   return (
     <div className="border-[3px] border-white rounded-lg p-4 w-full h-full relative lg:w-[50%]">
+      <Select />
       <div className=" relative">
         <div
           className=" w-full h-full z-0    "
@@ -129,6 +131,57 @@ export default function CodeEditor() {
           <div className=" overflow-hidden " ref={editor}></div>
         </div>
       </div>
+    </div>
+  );
+}
+
+function Select() {
+  const {
+    isOpen,
+    selectedItem,
+    getToggleButtonProps,
+    getLabelProps,
+    getMenuProps,
+    highlightedIndex,
+    getItemProps,
+  } = useSelect({
+    items: themes,
+  });
+
+  return (
+    <div>
+      <div className="w-72 flex flex-col gap-1">
+        <label {...getLabelProps()}>Choose your favorite book:</label>
+        <div
+          className="p-2 bg-white flex justify-between cursor-pointer"
+          {...getToggleButtonProps()}
+        >
+          <span>{selectedItem ? selectedItem.name : "Best book ever"}</span>
+          <span className="px-2">{isOpen ? <>&#8593;</> : <>&#8595;</>}</span>
+        </div>
+      </div>
+      <ul
+        className={`absolute w-72 bg-white mt-1 shadow-md max-h-80 overflow-scroll p-0 z-10 ${
+          !isOpen && "hidden"
+        }`}
+        {...getMenuProps()}
+      >
+        {isOpen &&
+          themes.map((item, index) => (
+            <li
+              // className={cx(
+              //   highlightedIndex === index && 'bg-blue-300',
+              //   selectedItem === item && 'font-bold',
+              //   'py-2 px-3 shadow-sm flex flex-col',
+              // )}
+              key={item.name}
+              {...getItemProps({ item, index })}
+            >
+              <span>{item.name}</span>
+              <span className="text-sm text-gray-700">{item.name}</span>
+            </li>
+          ))}
+      </ul>
     </div>
   );
 }
