@@ -11,8 +11,13 @@
   "dependencies": {
     "@codemirror/lang-javascript": "^6.2.2",
     "@codemirror/view": "^6.26.3",
+    "@uiw/codemirror-theme-abcdef": "^4.21.25",
+    "@uiw/codemirror-theme-abyss": "^4.21.25",
+    "@uiw/codemirror-theme-basic": "^4.21.25",
+    "@uiw/codemirror-theme-bespin": "^4.21.25",
     "@uiw/codemirror-themes-all": "^4.21.25",
     "@uiw/react-codemirror": "^4.21.25",
+    "classnames": "^2.5.1",
     "codemirror": "^5.65.16",
     "downshift": "^9.0.4",
     "next": "14.2.2",
