@@ -1,6 +1,6 @@
 import { themes } from "@/data";
 import { useSelect } from "downshift";
-import React from "react";
+import React, { useEffect } from "react";
 
 import PaintIcon from "@/app/assets/paint.svg";
 
@@ -11,23 +11,30 @@ import ArrowDown from "@/app/assets/arrowdown.svg";
 import Image from "next/image";
 import classNames from "classnames";
 import { useQueryState } from "nuqs";
+import { useEditorUrlState } from "@/hooks/useEditorUrlState";
 export default function ThemeSelect() {
-  const [t, setT] = useQueryState("t");
+  const [{ t }, setState] = useEditorUrlState();
 
   console.log(t);
 
-  const [selectedItem, setSelectedItem] = React.useState<{ name: string  }  | null>(t);
+  const [selectedItem, setSelectedItem] = React.useState<null | any>(t);
   const { isOpen, getToggleButtonProps, getMenuProps, getItemProps } =
     useSelect({
       items: themes,
+      selectedItem,
 
       onSelectedItemChange: ({ selectedItem: newSelectedItem }) => {
-        setT(selectedItem.name);
         setSelectedItem(newSelectedItem);
+
+        setState({
+          t: newSelectedItem.name,
+        });
       },
     });
 
   const cx = classNames;
+
+  console.log(selectedItem)
 
   return (
     <div>
@@ -39,7 +46,7 @@ export default function ThemeSelect() {
           className="p-2  flex items-center justify-between cursor-pointer h-[40px] text-sm border-2 rounded-r-[3px]  border-white w-full"
           {...getToggleButtonProps()}
         >
-          <span>{selectedItem ? selectedItem.name : "Best book ever"}</span>
+          <span>{selectedItem ? selectedItem.name || selectedItem : selectedItem}</span>
           <span className="px-2">
             {isOpen ? (
               <>

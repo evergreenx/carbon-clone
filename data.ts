@@ -1,6 +1,13 @@
 export const themes = [
-  { name: "abdcef" },
+  { name: "abcdef" },
   { name: "abyss" },
   { name: "basic dark" },
   { name: "bespin" },
+  { name: "dracula" },
+
+  { name: "darcula" },
+
+
+
+
 ];

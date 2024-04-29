@@ -4,12 +4,23 @@ import { Extension, useCodeMirror } from "@uiw/react-codemirror";
 import { EditorView } from "@codemirror/view";
 import { Ref, useEffect, useRef } from "react";
 import { javascript } from "@codemirror/lang-javascript";
-import { abcdef, basicDark, bespin, abyss } from "@uiw/codemirror-themes-all";
+import {
+  abcdef,
+  basicDark,
+  bespin,
+  abyss,
+  dracula,
+  consoleLight,
+  darcula,
+} from "@uiw/codemirror-themes-all";
 
-import { useQueryState } from "nuqs";
+import { useQueryState, useQueryStates, parseAsString } from "nuqs";
 import Toolbox from "./toolbox";
+import { useEditorUrlState } from "@/hooks/useEditorUrlState";
 
 export default function CodeEditor() {
+  const [{ bg, t }] = useEditorUrlState();
+
   const value = `const pluckDeep = key => obj => key.split('.').reduce((accum, key) => accum[key], obj)
 
   const compose = (...fns) => res => fns.reduce((accum, next) => next(accum), res)
@@ -43,10 +54,10 @@ export default function CodeEditor() {
     },
   });
 
-  const color = "purple";
-  const [bg, setBg] = useQueryState("bg", { defaultValue: "purple" });
+  console.log(bg);
 
-  const [t, setT] = useQueryState("t", { defaultValue: "abyss" });
+  console.log(t);
+
   let extensions: Extension[] | undefined = [];
 
   // language switch
@@ -81,6 +92,11 @@ export default function CodeEditor() {
 
       break;
 
+    case "consoleLight":
+      theme = consoleLight;
+
+      break;
+
     case "basic dark":
       theme = basicDark;
 
@@ -88,16 +104,26 @@ export default function CodeEditor() {
     case "abyss":
       theme = abyss;
 
-    //   break;
+      break;
+    case "dracula":
+      theme = dracula;
+
+      break;
+
+    case "darcula":
+      theme = darcula;
+
+      break;
     // // Add other cases for different language modes as needed
 
     default:
       // Default to JavaScript if language mode is not recognized
-      // theme = dracula;
+      theme = dracula;
 
       break;
   }
 
+  console.log(theme);
   const editor: Ref<any> = useRef();
   const { setContainer, state, setView, setState } = useCodeMirror({
     container: editor.current,
