@@ -11,3 +11,11 @@ export const themes = [
 
 
 ];
+
+export const languages  = [
+
+
+    {name : 'javascript'},
+    {name : 'python'},
+    {name : 'java'}
+]

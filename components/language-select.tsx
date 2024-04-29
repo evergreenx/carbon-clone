@@ -1,4 +1,4 @@
-import { themes } from "@/data";
+import { languages } from "@/data";
 import { useSelect } from "downshift";
 import React, { useEffect } from "react";
 
@@ -12,28 +12,25 @@ import Image from "next/image";
 import classNames from "classnames";
 import { useQueryState } from "nuqs";
 import { useEditorUrlState } from "@/hooks/useEditorUrlState";
-export default function ThemeSelect() {
-  const [{ t }, setState] = useEditorUrlState();
+export default function LanguageSelect() {
+  const [{ l }, setState] = useEditorUrlState();
 
-
-  const [selectedItem, setSelectedItem] = React.useState<null | any>(t);
+  const [selectedItem, setSelectedItem] = React.useState<null | any>(l);
   const { isOpen, getToggleButtonProps, getMenuProps, getItemProps } =
     useSelect({
-      items: themes,
+      items: languages,
       selectedItem,
 
       onSelectedItemChange: ({ selectedItem: newSelectedItem }) => {
         setSelectedItem(newSelectedItem);
 
         setState({
-          t: newSelectedItem.name,
+          l: newSelectedItem.name,
         });
       },
     });
 
   const cx = classNames;
-
-
 
   return (
     <div>
@@ -45,7 +42,9 @@ export default function ThemeSelect() {
           className="p-2  flex items-center justify-between cursor-pointer h-[40px] text-sm border-2 rounded-r-[3px]  border-white w-full"
           {...getToggleButtonProps()}
         >
-          <span>{selectedItem ? selectedItem.name || selectedItem : selectedItem}</span>
+          <span>
+            {selectedItem ? selectedItem.name || selectedItem : selectedItem}
+          </span>
           <span className="px-2">
             {isOpen ? (
               <>
@@ -65,7 +64,7 @@ export default function ThemeSelect() {
         {...getMenuProps()}
       >
         {isOpen &&
-          themes.map((item, index) => (
+          languages.map((item, index) => (
             <li
               className={cx(
                 selectedItem === item && "font-bold",

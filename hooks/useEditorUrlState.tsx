@@ -6,5 +6,6 @@ export function useEditorUrlState() {
   return useQueryStates({
     bg: parseAsString.withDefault("red"),
     t: parseAsString.withDefault("bespin"),
+    l : parseAsString.withDefault('javascript')
   });
 }

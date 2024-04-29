@@ -17,9 +17,11 @@ import {
 import { useQueryState, useQueryStates, parseAsString } from "nuqs";
 import Toolbox from "./toolbox";
 import { useEditorUrlState } from "@/hooks/useEditorUrlState";
+import { python } from "@codemirror/lang-python";
+import { java } from "@codemirror/lang-java";
 
 export default function CodeEditor() {
-  const [{ bg, t }] = useEditorUrlState();
+  const [{ bg, t , l }] = useEditorUrlState();
 
   const value = `const pluckDeep = key => obj => key.split('.').reduce((accum, key) => accum[key], obj)
 
@@ -61,13 +63,18 @@ export default function CodeEditor() {
   let extensions: Extension[] | undefined = [];
 
   // language switch
-  switch ("javascript") {
+  switch (l) {
     case "javascript":
       extensions = [javascript(), EditorView.lineWrapping, FontSizeTheme];
 
       break;
-      // case "python":
-      //   extensions = [python(), EditorView.lineWrapping, FontSizeTheme];
+      case "python":
+        extensions = [python(), EditorView.lineWrapping, FontSizeTheme];
+
+      break;
+
+      case "java":
+        extensions = [java(), EditorView.lineWrapping, FontSizeTheme];
 
       break;
     // Add other cases for different language modes as needed

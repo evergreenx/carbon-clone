@@ -9,7 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@codemirror/lang-java": "^6.0.1",
     "@codemirror/lang-javascript": "^6.2.2",
+    "@codemirror/lang-python": "^6.1.5",
     "@codemirror/view": "^6.26.3",
     "@uiw/codemirror-theme-abcdef": "^4.21.25",
     "@uiw/codemirror-theme-abyss": "^4.21.25",
