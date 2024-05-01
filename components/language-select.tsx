@@ -42,9 +42,8 @@ export default function LanguageSelect() {
           className="p-2  flex items-center justify-between cursor-pointer h-[40px] text-sm border-2 rounded-r-[3px]  border-white w-full"
           {...getToggleButtonProps()}
         >
-          <span>
-            {selectedItem ? selectedItem.name || selectedItem : selectedItem}
-          </span>
+              <span  className="capitalize">{selectedItem ? selectedItem.name || selectedItem : selectedItem}</span>
+
           <span className="px-2">
             {isOpen ? (
               <>
@@ -69,7 +68,7 @@ export default function LanguageSelect() {
               className={cx(
                 selectedItem === item && "font-bold",
                 `bg-[#121212]  hover:bg-[#1F1F1F] py-2 px-4 
-               border-b-white border text-sm flex justify-between  text-left cursor-pointer`
+               border-b-white border text-sm flex justify-between  text-left cursor-pointer capitalize`
               )}
               key={item.name}
               {...getItemProps({ item, index })}
