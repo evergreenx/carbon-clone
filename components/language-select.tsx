@@ -5,6 +5,9 @@ import React, { useEffect } from "react";
 import PaintIcon from "@/app/assets/paint.svg";
 
 import ActiveIcon from "@/app/assets/active.svg";
+
+import GlobeIcon from "@/app/assets/globe.svg";
+
 import ArrowUp from "@/app/assets/arrowup.svg";
 import ArrowDown from "@/app/assets/arrowdown.svg";
 
@@ -36,7 +39,7 @@ export default function LanguageSelect() {
     <div>
       <div className=" flex text-white rounded-md ">
         <div className="border-2 text-white border-white border-r-0 rounded-l-[3px] w-[40px] flex justify-center items-center  h-[40px]">
-          <Image src={PaintIcon} alt="painticon" />
+          <Image src={GlobeIcon} alt="painticon" />
         </div>
         <div
           className="p-2  flex items-center justify-between cursor-pointer h-[40px] text-sm border-2 rounded-r-[3px]  border-white w-full"
