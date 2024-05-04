@@ -21,7 +21,7 @@ import { python } from "@codemirror/lang-python";
 import { java } from "@codemirror/lang-java";
 
 export default function CodeEditor() {
-  const [{ bg, t , l }] = useEditorUrlState();
+  const [{ bg, t , l , ds }] = useEditorUrlState();
 
   const value = `const pluckDeep = key => obj => key.split('.').reduce((accum, key) => accum[key], obj)
 
@@ -40,7 +40,7 @@ export default function CodeEditor() {
       fontSize: `14px`,
       fontFamily: "font",
 
-      // boxShadow: ds ? "0 20px 68px rgba(0, 0, 0, 0.55)" : "",
+      boxShadow: ds ? "0 20px 68px rgba(0, 0, 0, 0.55)" : null ,
     },
     ".cm-content": {},
     ".cm-gutters": {
@@ -56,9 +56,8 @@ export default function CodeEditor() {
     },
   });
 
-  console.log(bg);
-
-  console.log(t);
+  console.log(ds);
+;
 
   let extensions: Extension[] | undefined = [];
 
@@ -130,7 +129,6 @@ export default function CodeEditor() {
       break;
   }
 
-  console.log(theme);
   const editor: Ref<any> = useRef();
   const { setContainer, state, setView, setState } = useCodeMirror({
     container: editor.current,
@@ -154,7 +152,7 @@ export default function CodeEditor() {
     if (editor.current) {
       setContainer(editor.current);
     }
-  }, [editor.current, t]);
+  }, [editor.current, t , ds]);
 
   return (
     <div className="border-[3px] border-white rounded-lg p-4 w-full h-full relative lg:w-[50%]">
@@ -168,7 +166,7 @@ export default function CodeEditor() {
               backgroundColor: bg,
             }}
           >
-            <div className=" overflow-hidden " ref={editor}></div>
+            <div className=" overflow-hidden  z-50" ref={editor}></div>
           </div>
         </div>
       </>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import ThemeSelect from "./theme-select";
 import LanguageSelect from "./language-select";
 import BGPicker from "./bg-picker";
