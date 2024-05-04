@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import ThemeSelect from "./theme-select";
 import LanguageSelect from "./language-select";
 import BGPicker from "./bg-picker";
+import Settings from "./settings";
 
 export default function Toolbox() {
   return (
@@ -11,6 +12,8 @@ export default function Toolbox() {
       <LanguageSelect />
 
       <BGPicker />
+
+      <Settings />
     </div>
   );
 }

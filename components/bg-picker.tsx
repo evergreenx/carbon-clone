@@ -16,7 +16,7 @@ export default function BGPicker() {
   const [hex, setHex] = useState(bg);
   const [showPicker, setShowPicker] = useState(false);
   return (
-    <>
+    <div className="relative">
       <div
         style={{
           backgroundColor: bg,
@@ -26,7 +26,7 @@ export default function BGPicker() {
       ></div>
 
       {showPicker && (
-        <div className="absolute inset-0  z-50" ref={clickRef}>
+        <div className="absolute -left-6  top-12  z-50" ref={clickRef}>
           <Sketch
             style={{ marginLeft: 20 }}
             color={hex}
@@ -39,6 +39,6 @@ export default function BGPicker() {
           />
         </div>
       )}
-    </>
+    </div>
   );
 }

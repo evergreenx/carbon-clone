@@ -37,7 +37,7 @@ export default function LanguageSelect() {
 
   return (
     <div>
-      <div className=" flex text-white rounded-md ">
+      <div className=" flex text-white lg:w-52 relative  ">
         <div className="border-2 text-white border-white border-r-0 rounded-l-[3px] w-[40px] flex justify-center items-center  h-[40px]">
           <Image src={GlobeIcon} alt="painticon" />
         </div>
@@ -45,12 +45,16 @@ export default function LanguageSelect() {
           className="p-2  flex items-center justify-between cursor-pointer h-[40px] text-sm border-2 rounded-r-[3px]  border-white w-full"
           {...getToggleButtonProps()}
         >
-              <span  className="capitalize">{selectedItem ? selectedItem.name || selectedItem : selectedItem}</span>
+          <span className="capitalize">
+            {selectedItem ? selectedItem.name || selectedItem : selectedItem}
+          </span>
 
           <span className="px-2">
             {isOpen ? (
               <>
-                <Image src={ArrowDown} alt="arrowdown" />
+                <div className="rotate-180">
+                  <Image src={ArrowDown} alt="arrowdown" />
+                </div>
               </>
             ) : (
               <>
@@ -61,7 +65,7 @@ export default function LanguageSelect() {
         </div>
       </div>
       <ul
-        className={`absolute max-h-[350px] w-52  overflow-y-scroll text-white  border-2 rounded-b-[3px]  
+        className={`absolute max-h-[350px] w-52 lg:w-[176px] overflow-y-scroll text-white  border-2 rounded-b-[3px]   lg:ml-8
         rounded-l-[3px] border-white mt-[-2px] p-0 z-10 ${!isOpen && "hidden"}`}
         {...getMenuProps()}
       >
@@ -70,7 +74,7 @@ export default function LanguageSelect() {
             <li
               className={cx(
                 selectedItem === item && "font-bold",
-                `bg-[#121212]  hover:bg-[#1F1F1F] py-2 px-4 
+                `bg-primary  hover:bg-[#1F1F1F] py-2 px-4 
                border-b-white border text-sm flex justify-between  text-left cursor-pointer capitalize`
               )}
               key={item.name}
