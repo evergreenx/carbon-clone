@@ -19,9 +19,10 @@ import Toolbox from "./toolbox";
 import { useEditorUrlState } from "@/hooks/useEditorUrlState";
 import { python } from "@codemirror/lang-python";
 import { java } from "@codemirror/lang-java";
+import WindowsControlHeader from "./settings/window/windows-control-header";
 
 export default function CodeEditor() {
-  const [{ bg, t , l , ds , ph , pv }] = useEditorUrlState();
+  const [{ bg, t, l, ds, ph, pv, wc }] = useEditorUrlState();
 
   const value = `const pluckDeep = key => obj => key.split('.').reduce((accum, key) => accum[key], obj)
 
@@ -40,7 +41,7 @@ export default function CodeEditor() {
       fontSize: `14px`,
       fontFamily: "font",
 
-      boxShadow: ds ? "0 20px 68px rgba(0, 0, 0, 0.55)" : null ,
+      boxShadow: ds ? "0 20px 68px rgba(0, 0, 0, 0.55)" : null,
     },
     ".cm-content": {},
     ".cm-gutters": {
@@ -52,12 +53,9 @@ export default function CodeEditor() {
       // fontFamily: font,
 
       // lineHeight: 22/,
-      // paddingTop: osActive ? "16px" : "",
+      paddingTop: wc ? "30px" : "10px",
     },
   });
-
-  console.log(ds);
-;
 
   let extensions: Extension[] | undefined = [];
 
@@ -67,13 +65,13 @@ export default function CodeEditor() {
       extensions = [javascript(), EditorView.lineWrapping, FontSizeTheme];
 
       break;
-      case "python":
-        extensions = [python(), EditorView.lineWrapping, FontSizeTheme];
+    case "python":
+      extensions = [python(), EditorView.lineWrapping, FontSizeTheme];
 
       break;
 
-      case "java":
-        extensions = [java(), EditorView.lineWrapping, FontSizeTheme];
+    case "java":
+      extensions = [java(), EditorView.lineWrapping, FontSizeTheme];
 
       break;
     // Add other cases for different language modes as needed
@@ -152,7 +150,7 @@ export default function CodeEditor() {
     if (editor.current) {
       setContainer(editor.current);
     }
-  }, [editor.current, t , ds]);
+  }, [editor.current, t, ds]);
 
   return (
     <div className="border-[3px] border-white rounded-lg p-4 w-full h-full relative lg:w-[50%]">
@@ -166,6 +164,8 @@ export default function CodeEditor() {
               backgroundColor: bg,
             }}
           >
+
+            <WindowsControlHeader />
             <div className=" overflow-hidden  z-50" ref={editor}></div>
           </div>
         </div>

@@ -10,7 +10,8 @@ export function useEditorUrlState() {
     ds : parseAsBoolean.withDefault(false),
     pv : parseAsInteger.withDefault(10),
     ph : parseAsInteger.withDefault(30),
-    wc : parseAsBoolean.withDefault(false)
+    wc : parseAsBoolean.withDefault(false),
+    osType : parseAsString.withDefault('m')
 
   });
 }

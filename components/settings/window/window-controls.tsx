@@ -8,9 +8,8 @@ import ControlTwo from "@/app/assets/control2.svg";
 
 import ControlThree from "@/app/assets/control3.svg";
 
-
 export default function WindowsControl() {
-  const [{ wc }, setState] = useEditorUrlState();
+  const [{ wc, osType }, setState] = useEditorUrlState();
 
   const [isChecked, setIsChecked] = useState(wc);
 
@@ -18,6 +17,21 @@ export default function WindowsControl() {
     setIsChecked(!isChecked);
     setState({
       wc: !isChecked,
+    });
+  };
+
+  const [activeWindowsControl, setActiveWindowsControl] = useState(osType);
+
+  const osTypes = [
+    { type: "w", image: ControlOne },
+    { type: "m", image: ControlTwo },
+    { type: "w2", image: ControlThree },
+  ];
+
+  const handleSetActiveOs = (os: string) => {
+    setActiveWindowsControl(os);
+    setState({
+      osType: os,
     });
   };
 
@@ -37,33 +51,26 @@ export default function WindowsControl() {
           {isChecked ? (
             <Image src={ActiveIcon} alt="activeicon" />
           ) : (
-            <div
-              className="w-[18px] h-[18px] rounded-[36px] bg-[#393939]
-
-
-"
-            ></div>
+            <div className="w-[18px] h-[18px] rounded-[36px] bg-[#393939]"></div>
           )}
         </div>
       </div>
 
       {isChecked ? (
         <div className="my-2 space-x-6 flex">
-          <div className="">
-            <Image src={ControlOne} alt="controlone" />
-          </div>
-
-                  
-          <div className="">
-            <Image src={ControlThree} alt="controlothree" />
-          </div>
-
-          <div className="">
-            <Image src={ControlTwo} alt="controlotwo" />
-          </div>
-
-
-  
+          {osTypes.map((os, index) => (
+            <div
+              className={`${
+                activeWindowsControl === os.type
+                  ? "border-2 rounded-[3px]"
+                  : null
+              }`}
+              key={index}
+              onClick={() => handleSetActiveOs(os.type)}
+            >
+              <Image src={os.image} alt={`control${index + 1}`} />
+            </div>
+          ))}
         </div>
       ) : null}
     </div>

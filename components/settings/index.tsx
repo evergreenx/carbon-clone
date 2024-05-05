@@ -14,7 +14,7 @@ export default function Settings() {
   const [showWindowsControls, setShowWindowsControls] = useState(true);
   const [showEditorControls, setShowEditorControls] = useState(false);
 
-  const [activeControl, setActiveControl] = useState('window');
+  const [activeControl, setActiveControl] = useState("window");
 
   const toggleControl = (control: string) => {
     setActiveControl(control);
@@ -49,7 +49,7 @@ export default function Settings() {
           className="w-[355px] 
 
           rounded-[3px] absolute flex border top-12
-         text-white z-50 bg-primary"
+         text-white z-[99] bg-primary"
         >
           <div className="sidecontrol border w-[40%] bg-[#393939] ">
             {sideControl.map((i, index) => {
