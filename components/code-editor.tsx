@@ -20,7 +20,7 @@ import { java } from "@codemirror/lang-java";
 import WindowsControlHeader from "./settings/window/windows-control-header";
 
 export default function CodeEditor() {
-  const [{ bg, t, l, ds, ph, pv, wc, fs, lh }] = useEditorUrlState();
+  const [{ bg, t, l, ds, ph, pv, wc, fs, lh, ln }] = useEditorUrlState();
 
   const value = `const pluckDeep = key => obj => key.split('.').reduce((accum, key) => accum[key], obj)
 
@@ -60,7 +60,7 @@ export default function CodeEditor() {
   // language switch
   switch (l) {
     case "javascript":
-      extensions = [javascript(), EditorView.lineWrapping ,FontSizeTheme];
+      extensions = [javascript(), EditorView.lineWrapping, FontSizeTheme];
 
       break;
     case "python":
@@ -132,7 +132,7 @@ export default function CodeEditor() {
     extensions,
 
     basicSetup: {
-      lineNumbers: false,
+      lineNumbers: ln,
       highlightActiveLine: false,
       highlightActiveLineGutter: false,
       foldGutter: false,

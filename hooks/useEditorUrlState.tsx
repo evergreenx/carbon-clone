@@ -17,6 +17,7 @@ export function useEditorUrlState() {
     wc: parseAsBoolean.withDefault(false),
     osType: parseAsString.withDefault("m"),
     fs: parseAsString.withDefault("14"),
-    lh : parseAsString.withDefault('192')
+    lh : parseAsString.withDefault('192'),
+    ln : parseAsBoolean.withDefault(true)
   });
 }
