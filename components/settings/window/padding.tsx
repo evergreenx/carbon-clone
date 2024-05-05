@@ -33,7 +33,7 @@ export default function Padding() {
         value={ph}
         handleChange={handleChange2}
         min={'0'}
-        max="200"
+        max="100"
       />
     </div>
   );

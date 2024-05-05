@@ -158,7 +158,7 @@ export default function CodeEditor() {
           <div
             className=" w-full h-full z-0    "
             style={{
-              padding: `${ph}px ${pv}px`,
+              padding: `${pv}px ${ph}px`,
               backgroundColor: bg,
             }}
           >
