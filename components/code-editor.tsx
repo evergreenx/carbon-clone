@@ -13,8 +13,6 @@ import {
   consoleLight,
   darcula,
 } from "@uiw/codemirror-themes-all";
-
-import { useQueryState, useQueryStates, parseAsString } from "nuqs";
 import Toolbox from "./toolbox";
 import { useEditorUrlState } from "@/hooks/useEditorUrlState";
 import { python } from "@codemirror/lang-python";
@@ -22,7 +20,7 @@ import { java } from "@codemirror/lang-java";
 import WindowsControlHeader from "./settings/window/windows-control-header";
 
 export default function CodeEditor() {
-  const [{ bg, t, l, ds, ph, pv, wc }] = useEditorUrlState();
+  const [{ bg, t, l, ds, ph, pv, wc, fs, lh }] = useEditorUrlState();
 
   const value = `const pluckDeep = key => obj => key.split('.').reduce((accum, key) => accum[key], obj)
 
@@ -38,7 +36,7 @@ export default function CodeEditor() {
 
   const FontSizeTheme = EditorView.theme({
     "&": {
-      fontSize: `14px`,
+      fontSize: `${fs}px`,
       fontFamily: "font",
 
       boxShadow: ds ? "0 20px 68px rgba(0, 0, 0, 0.55)" : null,
@@ -52,7 +50,7 @@ export default function CodeEditor() {
 
       // fontFamily: font,
 
-      // lineHeight: 22/,
+      lineHeight: `${lh}%`,
       paddingTop: wc ? "30px" : "10px",
     },
   });
@@ -62,7 +60,7 @@ export default function CodeEditor() {
   // language switch
   switch (l) {
     case "javascript":
-      extensions = [javascript(), EditorView.lineWrapping, FontSizeTheme];
+      extensions = [javascript(), EditorView.lineWrapping ,FontSizeTheme];
 
       break;
     case "python":

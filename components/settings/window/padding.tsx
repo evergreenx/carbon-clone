@@ -5,7 +5,7 @@ import { useEditorUrlState } from "@/hooks/useEditorUrlState";
 export default function Padding() {
   const [{ pv, ph }, setState] = useEditorUrlState();
 
-  const handleChange = (e: React.ChangeEvent<any>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setState({
       pv: e.target.value,
     });
@@ -23,12 +23,17 @@ export default function Padding() {
         label="padding (vert) "
         value={pv}
         handleChange={handleChange}
+        min={'0'}
+        max="200"
+        
       />
 
       <CustomRange
         label="padding (horiz) "
         value={ph}
         handleChange={handleChange2}
+        min={'0'}
+        max="200"
       />
     </div>
   );

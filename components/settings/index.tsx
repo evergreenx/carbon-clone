@@ -6,6 +6,7 @@ import classNames from "classnames";
 
 import { useClickOutside } from "@/hooks/use-click-outside";
 import WindowContainer from "./window";
+import EditorContainer from "./editors";
 export default function Settings() {
   const [showSettings, setShowSettings] = useState(false);
 
@@ -71,7 +72,11 @@ export default function Settings() {
           <div className="w-full">
             {showWindowsControls ? <WindowContainer /> : null}
 
-            {showEditorControls ? <div className="">editor</div> : null}
+            {showEditorControls ? (
+           
+                <EditorContainer />
+
+            ) : null}
           </div>
         </div>
       ) : null}

@@ -4,24 +4,26 @@ export default function CustomRange({
   value,
   handleChange,
   label,
-} : {
-
-  value :number, 
-  label : string,
-  handleChange  :any
+  min,
+  max,
+}: {
+  value: string;
+  label: string;
+  min: string;
+  max: string;
+  handleChange: (value: React.ChangeEvent<HTMLInputElement>) => void;
 }) {
-  // const [value, setValue] = useState(initialValue);
-
-  console.log(value)
+  const percentage =
+    ((parseInt(value) - parseInt(min)) / (parseInt(max) - parseInt(min))) * 100;
 
   return (
     <>
-      <div className="relative h-[33px]  border border-white text-white overflow-hidden">
+      <div className="relative h-[33px] border border-white text-white overflow-hidden">
         {/* Range slider */}
         <div
           className="h-[33px] pointer-events-none inset-0 bg-[#393939] absolute w-full"
           style={{
-            transform: `translate3d(${value}%, 0, 0)`,
+            transform: `translate3d(${percentage}%, 0, 0)`,
           }}
         ></div>
         <label className="h-[33px] absolute flex items-center justify-center text-xs left-[8px] capitalize">
@@ -30,8 +32,8 @@ export default function CustomRange({
 
         <input
           type="range"
-          min={0}
-          max={200}
+          min={min}
+          max={max}
           value={value}
           onChange={handleChange}
           className="w-full h-3  bg-gray-300 rounded-full 
