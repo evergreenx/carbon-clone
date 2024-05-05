@@ -51,7 +51,7 @@ export default function CodeEditor() {
       // fontFamily: font,
 
       lineHeight: `${lh}%`,
-      paddingTop: wc ? "30px" : "10px",
+      paddingTop: wc ? "16px" : "0px",
     },
   });
 
@@ -162,8 +162,10 @@ export default function CodeEditor() {
               backgroundColor: bg,
             }}
           >
-            <WindowsControlHeader />
-            <div className=" overflow-hidden  z-50" ref={editor}></div>
+            <div className="">
+              <WindowsControlHeader />
+              <div className=" overflow-hidden  z-50" ref={editor}></div>
+            </div>
           </div>
         </div>
       </>

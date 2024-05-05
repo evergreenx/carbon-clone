@@ -13,13 +13,16 @@
     @apply bg-primary;
   }
 
-  .CodeMirror .CodeMirror-scroll {
-    overflow: hidden;
-  }
+
 }
 
 .cm-editor {
+  border: 0;
+  height: 100%;
+  line-height: 133%;
+  overflow: hidden;
+  padding: 18px 18px;
   padding-left: 12px;
   height: auto;
-  width: auto;
+  min-width: auto;
 }

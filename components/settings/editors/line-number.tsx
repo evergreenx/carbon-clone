@@ -17,7 +17,7 @@ export default function LineNumber() {
 
   return (
     <div className="flex justify-between items-center p-2 ">
-      <label className="text-xs">Line height</label>
+      <label className="text-xs">Line number</label>
 
       <div className=" cursor-pointer">
         <input
