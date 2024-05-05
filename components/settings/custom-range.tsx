@@ -2,13 +2,11 @@ import React, { useState } from "react";
 
 export default function CustomRange({
   value,
-  setValue,
   handleChange,
   label,
 } : {
 
   value :number, 
-  setValue : (value:number)=>void,
   label : string,
   handleChange  :any
 }) {
