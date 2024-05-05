@@ -164,7 +164,6 @@ export default function CodeEditor() {
               backgroundColor: bg,
             }}
           >
-
             <WindowsControlHeader />
             <div className=" overflow-hidden  z-50" ref={editor}></div>
           </div>

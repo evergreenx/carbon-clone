@@ -5,21 +5,15 @@ import { useEditorUrlState } from "@/hooks/useEditorUrlState";
 export default function Padding() {
   const [{ pv, ph }, setState] = useEditorUrlState();
 
-  console.log(pv, ph);
-
-  //   const [value, setValue] = useState(ph);
-
-  //   const [value2, setValue2] = useState(pv);
-
   const handleChange = (e: React.ChangeEvent<any>) => {
     setState({
-      ph: ph,
+      pv: e.target.value,
     });
   };
 
   const handleChange2 = (e: React.ChangeEvent<any>) => {
     setState({
-      pv: pv,
+      ph: e.target.value,
     });
   };
 
@@ -27,13 +21,13 @@ export default function Padding() {
     <div className="flex w-full">
       <CustomRange
         label="padding (vert) "
-        value={ph}
+        value={pv}
         handleChange={handleChange}
       />
 
       <CustomRange
         label="padding (horiz) "
-        value={pv}
+        value={ph}
         handleChange={handleChange2}
       />
     </div>
