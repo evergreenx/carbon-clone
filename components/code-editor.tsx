@@ -21,7 +21,7 @@ import { python } from "@codemirror/lang-python";
 import { java } from "@codemirror/lang-java";
 
 export default function CodeEditor() {
-  const [{ bg, t , l , ds }] = useEditorUrlState();
+  const [{ bg, t , l , ds , ph , pv }] = useEditorUrlState();
 
   const value = `const pluckDeep = key => obj => key.split('.').reduce((accum, key) => accum[key], obj)
 
@@ -162,7 +162,7 @@ export default function CodeEditor() {
           <div
             className=" w-full h-full z-0    "
             style={{
-              padding: "56px 56px",
+              padding: `${ph}px ${pv}px`,
               backgroundColor: bg,
             }}
           >

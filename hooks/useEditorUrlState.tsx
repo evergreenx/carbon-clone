@@ -1,4 +1,4 @@
-import { useQueryStates, parseAsString, parseAsBoolean } from "nuqs";
+import { useQueryStates, parseAsString, parseAsBoolean , parseAsInteger } from "nuqs";
 
 
 // our editor state
@@ -7,6 +7,9 @@ export function useEditorUrlState() {
     bg: parseAsString.withDefault("#ff0000"),
     t: parseAsString.withDefault("bespin"),
     l : parseAsString.withDefault('javascript'),
-    ds : parseAsBoolean.withDefault(false)
+    ds : parseAsBoolean.withDefault(false),
+    pv : parseAsInteger.withDefault(10),
+    ph : parseAsInteger.withDefault(30),
+
   });
 }

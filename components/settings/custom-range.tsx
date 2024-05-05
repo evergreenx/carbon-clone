@@ -1,16 +1,20 @@
 import React, { useState } from "react";
 
 export default function CustomRange({
-  initialValue = 50,
-  min = 0,
-  max = 100,
-  label = "padding(vert)",
-}) {
-  const [value, setValue] = useState(initialValue);
+  value,
+  setValue,
+  handleChange,
+  label,
+} : {
 
-  const handleChange = (e: React.ChangeEvent<any>) => {
-    setValue(e.target.value);
-  };
+  value :number, 
+  setValue : (value:number)=>void,
+  label : string,
+  handleChange  :any
+}) {
+  // const [value, setValue] = useState(initialValue);
+
+  console.log(value)
 
   return (
     <>
@@ -19,17 +23,17 @@ export default function CustomRange({
         <div
           className="h-[33px] pointer-events-none inset-0 bg-[#393939] absolute w-full"
           style={{
-            transform: `translate3d(${(value / (max - min)) * 100}%, 0, 0)`,
+            transform: `translate3d(${value}%, 0, 0)`,
           }}
         ></div>
         <label className="h-[33px] absolute flex items-center justify-center text-xs left-[8px] capitalize">
-          {label}
+          {label} {value}
         </label>
 
         <input
           type="range"
-          min={min}
-          max={max}
+          min={0}
+          max={200}
           value={value}
           onChange={handleChange}
           className="w-full h-3  bg-gray-300 rounded-full 
