@@ -151,7 +151,7 @@ export default function CodeEditor() {
   }, [editor.current, t, ds]);
 
   return (
-    <div className="border-[3px] border-white rounded-lg p-4 w-full h-full relative lg:w-[50%]">
+    <div className="border-[3px] border-white rounded-lg p-4 w-full h-full relative lg:w-[70%]">
       <>
         <Toolbox />
         <div className=" relative">

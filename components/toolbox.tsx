@@ -3,6 +3,7 @@ import ThemeSelect from "./theme-select";
 import LanguageSelect from "./language-select";
 import BGPicker from "./bg-picker";
 import Settings from "./settings";
+import Export from "./export";
 
 export default function Toolbox() {
   return (
@@ -14,6 +15,8 @@ export default function Toolbox() {
       <BGPicker />
 
       <Settings />
+
+      <Export />
     </div>
   );
 }
