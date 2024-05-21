@@ -7,7 +7,7 @@ import Export from "./export";
 
 export default function Toolbox() {
   return (
-    <div className="mb-4 flex flex-col lg:flex-row  lg:space-x-3 lg:space-y-0 space-y-2 w-full">
+    <div className="mb-4 flex flex-col lg:flex-row  lg:space-x-3 lg:space-y-0 space-y-2 ">
       <ThemeSelect />
 
       <LanguageSelect />
@@ -15,8 +15,6 @@ export default function Toolbox() {
       <BGPicker />
 
       <Settings />
-
-      <Export />
     </div>
   );
 }

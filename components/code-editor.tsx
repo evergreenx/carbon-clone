@@ -2,7 +2,7 @@
 
 import { Extension, useCodeMirror } from "@uiw/react-codemirror";
 import { EditorView } from "@codemirror/view";
-import { Ref, useEffect, useRef } from "react";
+import { Ref, useCallback, useEffect, useRef, useState } from "react";
 import { javascript } from "@codemirror/lang-javascript";
 import {
   abcdef,
@@ -18,6 +18,8 @@ import { useEditorUrlState } from "@/hooks/useEditorUrlState";
 import { python } from "@codemirror/lang-python";
 import { java } from "@codemirror/lang-java";
 import WindowsControlHeader from "./settings/window/windows-control-header";
+import { toPng, toSvg } from "html-to-image";
+import Export from "./export";
 
 export default function CodeEditor() {
   const [{ bg, t, l, ds, ph, pv, wc, fs, lh, ln }] = useEditorUrlState();
@@ -150,13 +152,62 @@ export default function CodeEditor() {
     }
   }, [editor.current, t, ds]);
 
+  const [fileName, setFileName] = useState("");
+
+  const handleDownloadPng = useCallback(() => {
+    if (editor.current === null) {
+      return;
+    }
+
+    toPng(editor.current, { cacheBust: true })
+      .then((dataUrl) => {
+        console.log("loading");
+        const link = document.createElement("a");
+        link.download = fileName || "carbonx";
+
+        link.href = dataUrl;
+        link.click();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [editor, fileName]);
+
+  const handleDownloadSvg = useCallback(() => {
+    if (editor.current === null) {
+      return;
+    }
+
+    toSvg(editor.current, { cacheBust: true })
+      .then((dataUrl) => {
+        console.log("loading");
+        const link = document.createElement("a");
+        link.download = fileName || "carbonx";
+        link.href = dataUrl;
+        link.click();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [editor, fileName]);
+
   return (
     <div className="border-[3px] border-white rounded-lg p-4 w-full h-full relative lg:w-[70%]">
       <>
-        <Toolbox />
+        <div className="flex lg:flex-row flex-col  lg:space-x-3 lg:space-y-0 space-y-2">
+          <Toolbox />
+          <Export
+            handleDownloadPng={handleDownloadPng}
+            handleDownloadSvg={handleDownloadSvg}
+            setFileName={setFileName}
+            fileName={fileName}
+          />
+        </div>
+
         <div className=" relative">
           <div
-            className=" w-full h-full z-0    "
+            ref={editor}
+            className=" w-full h-full z-0"
             style={{
               padding: `${pv}px ${ph}px`,
               backgroundColor: bg,
@@ -164,7 +215,7 @@ export default function CodeEditor() {
           >
             <div className="">
               <WindowsControlHeader />
-              <div className=" overflow-hidden  z-50" ref={editor}></div>
+              <div className=" overflow-hidden  z-50"></div>
             </div>
           </div>
         </div>

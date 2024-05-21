@@ -23,6 +23,7 @@
     "classnames": "^2.5.1",
     "codemirror": "^5.65.16",
     "downshift": "^9.0.4",
+    "html-to-image": "^1.11.11",
     "next": "14.2.2",
     "nuqs": "^1.17.1",
     "react": "^18",
