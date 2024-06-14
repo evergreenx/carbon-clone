@@ -22,7 +22,10 @@ import { toPng, toSvg } from "html-to-image";
 import Export from "./export";
 
 export default function CodeEditor() {
-  const [{ bg, t, l, ds, ph, pv, wc, fs, lh, ln }] = useEditorUrlState();
+  const [{ bg, t, l, ds, ph, pv, wc, fs, lh, ln }, valuex] =
+    useEditorUrlState();
+
+  console.log(valuex);
 
   const value = `const pluckDeep = key => obj => key.split('.').reduce((accum, key) => accum[key], obj)
 
@@ -192,7 +195,7 @@ export default function CodeEditor() {
   }, [editor, fileName]);
 
   return (
-    <div className="border-[3px] border-white rounded-lg p-4 w-full h-full relative lg:w-[70%]">
+    <div className="border-[3px] border-white rounded-lg p-4 max-w-[70%] h-full relative mx-auto">
       <>
         <div className="flex lg:flex-row flex-col  lg:space-x-3 lg:space-y-0 space-y-2">
           <Toolbox />

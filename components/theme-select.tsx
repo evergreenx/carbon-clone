@@ -61,7 +61,7 @@ export default function ThemeSelect() {
       </div>
       <ul
         className={`absolute max-h-[350px] w-52 lg:w-[176px] overflow-y-scroll text-white  border-2 rounded-b-[3px]   lg:ml-8
-        rounded-l-[3px] border-white mt-[-2px] p-0 z-10 ${!isOpen && "hidden"}`}
+        rounded-l-[3px] z-50 border-white mt-[-2px] p-0  ${!isOpen && "hidden"}`}
         {...getMenuProps()}
       >
         {isOpen &&
