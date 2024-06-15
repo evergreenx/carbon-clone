@@ -13,6 +13,8 @@
     "@codemirror/lang-javascript": "^6.2.2",
     "@codemirror/lang-python": "^6.1.5",
     "@codemirror/view": "^6.26.3",
+    "@supabase/ssr": "^0.3.0",
+    "@supabase/supabase-js": "^2.43.4",
     "@uiw/codemirror-theme-abcdef": "^4.21.25",
     "@uiw/codemirror-theme-abyss": "^4.21.25",
     "@uiw/codemirror-theme-basic": "^4.21.25",
