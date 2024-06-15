@@ -5,14 +5,14 @@ import Image from "next/image";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { createClient } from "@/utils/supabase/server";
-export default function TopNav() {
+import { revalidatePath } from "next/cache";
+import DropDown from "./drop-down";
+export default async function TopNav() {
   const signInWithGithub = async () => {
     "use server";
-
     const supabase = createClient();
-    const origin = headers().get("origin");
 
-    console.log(origin);
+    const origin = headers().get("origin");
 
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: "github",
@@ -27,15 +27,28 @@ export default function TopNav() {
       return redirect(data.url);
     }
 
-    console.log(data , 'uu');
+    console.log(data, "uu");
   };
-  return (
-    <form action={signInWithGithub} className="flex justify-end p-4 ">
-      <button className="border-2 space-x-4 p-2 border-white rounded text-white flex items-center bg-primary h-[40px]">
-        <Image src={GithubLogo} width={20} alt="githublogo" />
 
-        <p className="text-sm">Sign in/up</p>
-      </button>
-    </form>
+  const logout = async () => {
+    "use server";
+
+    const supabase = createClient();
+
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      console.log(error);
+    }
+    revalidatePath("/", "layout");
+  };
+
+  const supabase = createClient();
+
+  const { data } = await supabase.auth.getUser();
+
+  return (
+    <>
+      <DropDown data={data} signIn={signInWithGithub} logout={logout} />
+    </>
   );
 }

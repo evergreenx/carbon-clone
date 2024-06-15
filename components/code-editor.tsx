@@ -195,7 +195,7 @@ export default function CodeEditor() {
   }, [editor, fileName]);
 
   return (
-    <div className="border-[3px] border-white rounded-lg p-4 max-w-[70%] h-full relative mx-auto">
+    <div className="border-[3px] border-white rounded-lg p-4 w-full  lg:max-w-[70%] h-full relative mx-auto">
       <>
         <div className="flex lg:flex-row flex-col  lg:space-x-3 lg:space-y-0 space-y-2">
           <Toolbox />
