@@ -53,10 +53,10 @@ export default function SaveSnippet() {
     line_numbers: ln, // Use snake_case to match SQL column names
   };
 
-  const create = saveSnippet.bind(null, snippet);
+  const save = saveSnippet.bind(null, snippet);
 
   return (
-    <form action={create} className="p-2 flex justify-between w-full">
+    <form action={save} className="p-2 flex justify-between w-full">
       <input
         type="text"
         placeholder="add a name....."
