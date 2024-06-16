@@ -8,6 +8,8 @@ import {
 // our editor state
 export function useEditorUrlState() {
   return useQueryStates({
+
+    code : parseAsString.withDefault("console.log(evergreen)"),
     bg: parseAsString.withDefault("#fff"),
     t: parseAsString.withDefault("bespin"),
     l: parseAsString.withDefault("javascript"),
@@ -17,7 +19,7 @@ export function useEditorUrlState() {
     wc: parseAsBoolean.withDefault(false),
     osType: parseAsString.withDefault("m"),
     fs: parseAsString.withDefault("14"),
-    lh : parseAsString.withDefault('192'),
-    ln : parseAsBoolean.withDefault(true)
+    lh: parseAsString.withDefault("192"),
+    ln: parseAsBoolean.withDefault(true),
   });
 }

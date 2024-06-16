@@ -20,12 +20,14 @@ import { java } from "@codemirror/lang-java";
 import WindowsControlHeader from "./settings/window/windows-control-header";
 import { toPng, toSvg } from "html-to-image";
 import Export from "./export";
+import { createClient } from "@/utils/supabase/client";
+import { saveSnippet } from "@/db/actions";
+import SaveSnippet from "./save-code";
+import React from "react";
 
 export default function CodeEditor() {
-  const [{ bg, t, l, ds, ph, pv, wc, fs, lh, ln }, valuex] =
+  const [{ bg, t, l, ds, ph, pv, wc, fs, lh, ln, code }, setValue] =
     useEditorUrlState();
-
-  console.log(valuex);
 
   const value = `const pluckDeep = key => obj => key.split('.').reduce((accum, key) => accum[key], obj)
 
@@ -131,7 +133,8 @@ export default function CodeEditor() {
   }
 
   const editor: Ref<any> = useRef();
-  const { setContainer, state, setView, setState } = useCodeMirror({
+
+  const { setContainer, state, view, setView, setState } = useCodeMirror({
     container: editor.current,
 
     extensions,
@@ -142,18 +145,23 @@ export default function CodeEditor() {
       highlightActiveLineGutter: false,
       foldGutter: false,
     },
-    value: value,
+    value: code,
     width: "auto",
 
     height: "auto",
     theme: theme,
+    onChange: (value) => {
+      setValue({
+        code: value,
+      });
+    },
   });
 
   useEffect(() => {
     if (editor.current) {
       setContainer(editor.current);
     }
-  }, [editor.current, t, ds]);
+  }, [t, ds, view, setContainer]);
 
   const [fileName, setFileName] = useState("");
 
@@ -221,6 +229,8 @@ export default function CodeEditor() {
               <div className=" overflow-hidden  z-50"></div>
             </div>
           </div>
+
+          <SaveSnippet />
         </div>
       </>
     </div>
