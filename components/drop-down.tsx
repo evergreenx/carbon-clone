@@ -6,6 +6,7 @@ import { createClient } from "@/utils/supabase/server";
 import { revalidatePath } from "next/cache";
 import { useClickOutside } from "@/hooks/use-click-outside";
 import { User } from "@supabase/supabase-js";
+import Link from "next/link";
 
 export default function DropDown({
   data,
@@ -52,7 +53,9 @@ export default function DropDown({
           className="text-white text-sm bg-primary absolute p-3 divide top-[80px] w-[160px] border-2 rounded "
         >
           <ul>
-            <li>Snippets</li>
+            <li>
+              <Link href={"/snippets"}>Snippets</Link>
+            </li>
 
             <li>
               <form

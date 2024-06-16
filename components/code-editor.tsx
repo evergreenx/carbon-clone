@@ -20,12 +20,28 @@ import { java } from "@codemirror/lang-java";
 import WindowsControlHeader from "./settings/window/windows-control-header";
 import { toPng, toSvg } from "html-to-image";
 import Export from "./export";
-import { createClient } from "@/utils/supabase/client";
-import { saveSnippet } from "@/db/actions";
+
 import SaveSnippet from "./save-code";
 import React from "react";
 
-export default function CodeEditor() {
+type SnippetData = {
+  id: string;
+  title: string;
+  code: string;
+  language: string;
+  theme: string;
+  background: string;
+  drop_shadow: boolean;
+  padding_vertical: string;
+  padding_horizontal: string;
+  window_controls: boolean;
+  operating_system: string;
+  font_size: string;
+  line_height: string;
+  line_numbers: boolean;
+};
+
+export default function CodeEditor({ data }: { data?: SnippetData }) {
   const [{ bg, t, l, ds, ph, pv, wc, fs, lh, ln, code }, setValue] =
     useEditorUrlState();
 
@@ -201,6 +217,31 @@ export default function CodeEditor() {
         console.log(err);
       });
   }, [editor, fileName]);
+
+  useEffect(() => {
+    if (data) {
+      // Set the editor state using the snippet data
+      const snippet = data;
+
+      setValue({
+        title: snippet.title,
+        bg: snippet.background,
+        t: snippet.theme,
+        l: snippet.language,
+        ds: snippet.drop_shadow,
+        ph: snippet.padding_horizontal,
+        pv: snippet.padding_vertical,
+        wc: snippet.window_controls,
+        fs: snippet.font_size,
+        lh: snippet.line_height,
+        ln: snippet.line_numbers,
+        osType: snippet.operating_system,
+        code: snippet.code, 
+      });
+
+
+    }
+  }, [data]);
 
   return (
     <div className="border-[3px] border-white rounded-lg p-4 w-full  lg:max-w-[70%] h-full relative mx-auto">

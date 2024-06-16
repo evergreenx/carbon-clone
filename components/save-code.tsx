@@ -24,7 +24,7 @@ const SaveButton = () => {
 export default function SaveSnippet() {
   const [session, setSession] = useState<Session | null>();
 
-  const [{ bg, t, l, ds, ph, pv, wc, fs, lh, ln, osType, code }] =
+  const [{ bg, t, l, ds, ph, pv, wc, fs, lh, ln, osType, code, title }] =
     useEditorUrlState();
   const supabase = createClient();
   useEffect(() => {
@@ -38,7 +38,6 @@ export default function SaveSnippet() {
 
   const snippet = {
     user_id: session?.user.id,
-    title: "My evee",
     code: code,
     language: l,
     theme: t,
@@ -56,16 +55,21 @@ export default function SaveSnippet() {
   const save = saveSnippet.bind(null, snippet);
 
   return (
-    <form action={save} className="p-2 flex justify-between w-full">
-      <input
-        type="text"
-        placeholder="add a name....."
-        name="title"
-        required
-        className="border-none bg-transparent text-white w-full outline-none "
-      />
+    <>
+      {session ? (
+        <form action={save} className="p-2 flex justify-between w-full">
+          <input
+            type="text"
+            placeholder="add a name....."
+            name="title"
+            defaultValue={title}
+            required
+            className="border-none bg-transparent text-white w-full outline-none "
+          />
 
-      <SaveButton />
-    </form>
+          <SaveButton />
+        </form>
+      ) : null}
+    </>
   );
 }

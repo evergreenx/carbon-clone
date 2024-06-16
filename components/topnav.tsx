@@ -39,7 +39,7 @@ export default async function TopNav() {
     if (error) {
       console.log(error);
     }
-    revalidatePath("/", "layout");
+    revalidatePath("/", "page");
   };
 
   const supabase = createClient();
