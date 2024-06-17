@@ -6,16 +6,10 @@ export const themes = [
   { name: "dracula" },
 
   { name: "darcula" },
-
-
-
-
 ];
 
-export const languages  = [
-
-
-    {name : 'javascript'},
-    {name : 'python'},
-    {name : 'java'}
-]
+export const languages = [
+  { name: "javascript" },
+  { name: "python" },
+  { name: "java" },
+];

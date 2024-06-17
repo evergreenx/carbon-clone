@@ -41,7 +41,7 @@ export default function DropDown({
             <Image src={GithubLogo} width={20} alt="githublogo" />
 
             <p className="text-sm">
-              {data.user ? data.user?.user_metadata.full_name : "Signin/signup"}
+              {data.user ? data.user?.user_metadata.full_name : "Sign in/ up"}
             </p>
           </button>
         </form>
