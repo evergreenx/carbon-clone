@@ -1,8 +1,9 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
 import { createClient } from "@/utils/supabase/server";
+import { revalidatePath } from "next/cache";
+import { headers } from "next/headers";
+import { redirect } from "next/navigation";
 
 export const saveSnippet = async (snippet: any, formdata: FormData) => {
   const title = formdata.get("title"); // Extract the title from FormData
@@ -20,4 +21,35 @@ export const saveSnippet = async (snippet: any, formdata: FormData) => {
   }
 
   return data;
+};
+
+export const signInWithGithub = async () => {
+  const supabase = createClient();
+
+  const origin = headers().get("origin");
+
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: "github",
+    options: {
+      redirectTo: `${origin}/auth/callback`,
+    },
+  });
+
+  if (error) {
+    console.log(error);
+  } else {
+    return redirect(data.url);
+  }
+
+  console.log(data, "uu");
+};
+
+export const logout = async () => {
+  const supabase = createClient();
+
+  const { error } = await supabase.auth.signOut();
+  if (error) {
+    console.log(error);
+  }
+  revalidatePath("/", "page");
 };

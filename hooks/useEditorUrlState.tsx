@@ -2,14 +2,13 @@ import {
   useQueryStates,
   parseAsString,
   parseAsBoolean,
-  parseAsInteger,
 } from "nuqs";
 
 // our editor state
 export function useEditorUrlState() {
   return useQueryStates({
-title : parseAsString.withDefault(''),
-    code : parseAsString.withDefault("console.log(evergreen)"),
+    title: parseAsString.withDefault(""),
+    code: parseAsString.withDefault("console.log(evergreen)"),
     bg: parseAsString.withDefault("#fff"),
     t: parseAsString.withDefault("bespin"),
     l: parseAsString.withDefault("javascript"),
